@@ -30,7 +30,7 @@ class RemoteTable
         else
           [row]
         end.map do |cell|
-          memo = cell.content.dup
+          memo = cell_content_processor ? cell_content_processor.call(cell) : cell.content.dup
           memo = assume_utf8 memo
           memo.gsub! WHITESPACE, SINGLE_SPACE
           memo.strip!
